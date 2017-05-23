@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        .main{
+            width:800px;
+            height:500px;
+            background: #333;
+            border:1px solid #333;
+            -webkit-border-radius:10px;
+            -moz-border-radius:10px;
+            border-radius:10px;
+            margin:60px auto;
+            font-family:'微软雅黑',sans-serif;
+        }
+
+        .clock{
+            width:600px;
+            height:150px;
+            color: #3bffff;
+            -webkit-border-radius:10px;
+            -moz-border-radius:10px;
+            border-radius:10px;
+            margin:150px  auto;
+            -webkit-animation-timing-function: linear;/*动画播放速度曲线*/
+            -webkit-animation-name: breathe;
+            -webkit-animation-duration: 2000ms;
+            -webkit-animation-iteration-count: infinite;/*动画播放次数*/
+            -webkit-animation-direction: alternate;/*动画是否反向播放*/
+        }
+        @-webkit-keyframes breathe {
+            0% { opacity: .2; box-shadow:0 0 5px rgba(255,255,255,0.1);}
+            100% { opacity: 1;box-shadow:0 0 50px rgb(59, 255, 255);}
+        }
+        .days{
+            width:600px;
+            height:75px;
+            line-height:75px;
+            font-size:3rem;
+            text-align: center;
+            display: block;
+        }
+        #time{
+            width:600px;
+            height:75px;
+            line-height:75px;
+            font-size:2.5rem;
+            text-align: center;
+        }
+    </style>
+    <script>
+        var t= null;
+        t=setTimeout(getTime,1000);
+        function getTime(){
+            var date=new Date();
+            var week = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六")[date.getDay()];
+            document.getElementById("mon").innerHTML=date.toLocaleDateString();//这样写更方便.
+            document.getElementById("days").innerHTML=week;
+            document.getElementById("time").innerHTML = date.toLocaleTimeString();
+            t = setTimeout("getTime()",1000); //设定定时器，循环执行
+        }
+    </script>
+</head>
+<body>
+<div class="main">
+    <div class="clock">
+        <div class="days">
+            <span id="mon"></span>
+            <span id="days"></span>
+        </div>
+        <div id="time">
+        </div>
+    </div>
+</div>
+</body>
+</html>
